@@ -15,7 +15,7 @@ fi
 #conf_dir="$(dirname $(realpath "$0"))/config"
 conf_dir="/tmp/scawp.SDCacheKiller"
 tmp_dir="/tmp/scawp.SDCacheKiller"
-steamapps_dir="/home/deck/.local/share/Steam/steamapps"
+steamapps_dir="/home/$USER/.local/share/Steam/steamapps"
 
 #create tempory directory
 mkdir -p "$tmp_dir"
