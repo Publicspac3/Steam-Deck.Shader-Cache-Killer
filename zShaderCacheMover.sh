@@ -5,7 +5,7 @@
 # Use at own Risk!
 
 tmp_dir="/tmp/scawp.SDCacheKiller/Mover"
-steamapps_dir="/home/deck/.local/share/Steam/steamapps"
+steamapps_dir="/home/$USER/.local/share/Steam/steamapps"
 
 #create tempory directory
 mkdir -p "$tmp_dir"
@@ -31,7 +31,7 @@ function gui () {
 
 function get_list () {
   #find all of the steam library locations
-  game_install_dirs=$(grep -ho '\"path\"\s*\".*\"' "/home/deck/.local/share/Steam/steamapps/libraryfolders.vdf" | sed -e 's/^\"path\"\s*\"//' -e 's/\"$/\/steamapps/' -e '/\/home\/deck\/.local\/share\/Steam\/steamapps/d')
+  game_install_dirs=$(grep -ho '\"path\"\s*\".*\"' "/home/$USER/.local/share/Steam/steamapps/libraryfolders.vdf" | sed -e 's/^\"path\"\s*\"//' -e 's/\"$/\/steamapps/' -e '/\/home\/deck\/.local\/share\/Steam\/steamapps/d')
   game_list=""
 
   while read -r install_dir; do
