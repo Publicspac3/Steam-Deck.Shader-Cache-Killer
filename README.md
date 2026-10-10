@@ -40,14 +40,14 @@ https://www.youtube.com/watch?v=SLGvTDGDUcY
 
 ## Run online Via Curl
 
-In Konsole type `curl -sSL https://raw.githubusercontent.com/scawp/Steam-Deck.Shader-Cache-Killer/main/zShaderCacheKiller.sh | bash` to run `zShaderCacheKiller`
+In Konsole type `curl -sSL https://raw.githubusercontent.com/Publicspac3/Steam-Deck.Shader-Cache-Killer/main/zShaderCacheKiller.sh | bash` to run `zShaderCacheKiller`
 
-In Konsole type `curl -sSL https://raw.githubusercontent.com/scawp/Steam-Deck.Shader-Cache-Killer/main/zShaderCacheMover.sh | bash` to run `zShaderCacheMover`
+In Konsole type `curl -sSL https://raw.githubusercontent.com/Publicspac3/Steam-Deck.Shader-Cache-Killer/main/zShaderCacheMover.sh | bash` to run `zShaderCacheMover`
 
 
 ## Install Via Curl
 
-In Konsole type `curl -sSL https://raw.githubusercontent.com/scawp/Steam-Deck.Shader-Cache-Killer/main/curl_install.sh | bash`
+In Konsole type `curl -sSL https://raw.githubusercontent.com/Publicspac3/Steam-Deck.Shader-Cache-Killer/main/curl_install.sh | bash`
 
 The install script will offer to add `zShaderCacheKiller.sh` & `zShaderCacheMover.sh` to your Steam Libaray, which can be ran from `GameMode`. 
 
@@ -56,14 +56,14 @@ The install script will offer to add `zShaderCacheKiller.sh` & `zShaderCacheMove
 
 To uninstall simply delete the install folder:
 
-`sudo rm -r /home/deck/.local/share/scawp/SDSCK`
+`sudo rm -r /home/$USER/.local/share/scawp/SDSCK`
 
 Also remove the `non-steam game` links in `Steam`
 
 
 # Found a Bug?
 
-Please add to the `issues` tab! https://github.com/scawp/Steam-Deck.Shader-Cache-Killer/issues
+Please add to the `issues` tab! https://github.com/Publicspac3/Steam-Deck.Shader-Cache-Killer/issues
 
 # "This is cool! How can I thank you?"
 ### Why not drop me a sub over on my youtube channel ;) [Chinballs Gaming](https://www.youtube.com/chinballsTV?sub_confirmation=1)
