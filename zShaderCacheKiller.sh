@@ -1,7 +1,7 @@
 #!/bin/bash
 #Steam Deck Shader Cache Killer by scawp
 #License: DBAD: https://github.com/scawp/Steam-Deck.Shader-Cache-Killer/blob/main/LICENSE.md
-#Source: https://github.com/scawp/Steam-Deck.Shader-Cache-Killer
+#Source: https://github.com/Publicspac3/Steam-Deck.Shader-Cache-Killer
 # Use at own Risk!
 
 live=1
