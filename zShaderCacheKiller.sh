@@ -35,9 +35,19 @@ if [ ! -d "$steamapps_dir" ]; then
 fi
 
 #find all of the steam library locations
+
 steamapp_dir=( $(grep -ho '\"path\"\s*\".*\"' "$steamapps_dir/libraryfolders.vdf" | sed -e 's/^\"path\"\s*\"//' -e 's/\"$/\/steamapps/') )
 
+echo "found libraryfolders.vdf and $echo("${#steamapp_dir[@]}") install locations at $steamapps_dir"
+echo "found libraries at:"
+for dir in "${steamapp_dir[@]}";
+do
+  echo ${dir}
+done
+
 function get_list () {
+
+  #51-118 merges .txt files to get to tmp_merged.txt then removes proton in 121
   true > "$tmp_dir/tmp_list.txt"
   du -m --max-depth 0  "$steamapps_dir/$1"/* | sort -nr > "$tmp_dir/tmp_list2.txt"
   
@@ -47,6 +57,7 @@ function get_list () {
       echo -e "?\t$(readlink $path)" >> "$tmp_dir/tmp_list.txt"
     else
       du -m --max-depth 0  "$(realpath $path)" >> "$tmp_dir/tmp_list.txt"
+
     fi
   done <<< "$(awk '{ print $2 }' "$tmp_dir/tmp_list2.txt")"
 
@@ -60,9 +71,13 @@ function get_list () {
     found=0
     app_id="$(echo "$manifest" | sed -e "s/appmanifest_//" -e "s/\.acf//")"
 
+    echo "Found app id $app_id"
+
     for dir in "${steamapp_dir[@]}"; do 
       if [ -s  "$dir/$manifest" ]; then
-        install_dir="$(grep -ho '\"installdir\"\s*\".*\"' "$dir/$manifest" | sed -e 's/^\"installdir\"\s*\"//' -e 's/\"$//')"
+      echo  "dir/manifest is $dir/$manifest"
+        install_dir="$(grep -ho "\"installdir\"\s*\".*\"" "$dir/$manifest" | sed -e 's/^\"installdir\"\s*\"//' -e 's/\"$//')"
+        echo "install_dir (game name) is $install_dir"
         echo -e "$install_dir\t " >> "$tmp_dir/tmp_names.txt"
         found=1
         break;
@@ -71,6 +86,7 @@ function get_list () {
     #TODO: This is slow, cache the results?
     if [ $found = 0 ] && [ -f "$conf_dir/fulllist.json" ] && [ -s "$conf_dir/fulllist.json" ] && [ "$app_id" -lt 100000000 ];then
       app_name="$(cat "$conf_dir/fulllist.json" | jq -r ".applist.apps[] | select(.appid == $app_id) | .name"  | head -n1)"
+
       if [ ! -z "$app_name" ];then 
         echo -e "$app_name\tUninstalled?" >> "$tmp_dir/tmp_names.txt"
         found=1
