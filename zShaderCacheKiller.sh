@@ -21,12 +21,6 @@ steamapps_dir="/home/$USER/.local/share/Steam/steamapps"
 mkdir -p "$tmp_dir"
 mkdir -p "$conf_dir"
 
-#download list of all steam ids if we havn't already
-if [ ! -f "$conf_dir/fulllist.json" ] || [ ! -s "$conf_dir/fulllist.json" ];then 
-  #TODO: Test when offline or errorcode
-  curl "https://api.steampowered.com/ISteamApps/GetAppList/v2/" > "$conf_dir/fulllist.json"
-fi
-
 #check we can find the steamapps directory
 if [ ! -d "$steamapps_dir" ]; then
   zenity --error --width=400 \
@@ -83,16 +77,7 @@ function get_list () {
         break;
       fi
     done
-    #TODO: This is slow, cache the results?
-    if [ $found = 0 ] && [ -f "$conf_dir/fulllist.json" ] && [ -s "$conf_dir/fulllist.json" ] && [ "$app_id" -lt 100000000 ];then
-      app_name="$(cat "$conf_dir/fulllist.json" | jq -r ".applist.apps[] | select(.appid == $app_id) | .name"  | head -n1)"
-
-      if [ ! -z "$app_name" ];then 
-        echo -e "$app_name\tUninstalled?" >> "$tmp_dir/tmp_names.txt"
-        found=1
-      fi
-    fi
-
+    
     if [ $found = 0 ]; then
       #Non-steam games might be found by checking the controller_ui.txt logs
       app_id="$(echo "$manifest" | sed -e "s/appmanifest_//" -e "s/\.acf//")"
