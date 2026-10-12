@@ -1,7 +1,7 @@
 #!/bin/bash
 #Steam Deck Shader Cache Killer by scawp
 #License: DBAD: https://github.com/scawp/Steam-Deck.Shader-Cache-Killer/blob/main/LICENSE.md
-#Source: https://github.com/scawp/Steam-Deck-Shader.Cache-Killer
+#Source: https://github.com/Publicspac3/Steam-Deck-Shader.Cache-Killer
 
 #stop running script if anything returns an error (non-zero exit )
 set -e
@@ -57,6 +57,7 @@ function install_zShaderCacheKiller () {
   sudo chmod 555 "$script_install_dir/zShaderCacheKiller.sh"
   sudo chmod 555 "$script_install_dir/zShaderCacheMover.sh"
 
+  #steamos-add-to-steam doesnt exist by default so this needs to be edited
   add_killer="$(steamos-add-to-steam "$script_install_dir/zShaderCacheKiller.sh")"
   sleep 2;
   add_mover="$(steamos-add-to-steam "$script_install_dir/zShaderCacheMover.sh")"
